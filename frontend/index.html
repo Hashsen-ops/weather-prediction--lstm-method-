@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather Prediction AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <canvas id="weatherCanvas"></canvas>
+
+    <div class="overlay"></div>
+
+    <div class="container">
+
+        <h1>Weather Prediction Using LSTM</h1>
+        <div class="section1">
+            <div class="buttons">
+
+                <button class="button1" onclick="getLocation()">
+                    🌍 Use my location (GPS)
+                </button>
+
+                <div class="vertcal1">
+                    <div class="vertical"></div>
+                    <h3>or</h3>
+                    <div class="vertical"></div>
+                </div>
+
+                <div class="manual-location">
+
+                    <input type="text" id="cityInput" placeholder="Enter City Name">
+
+                    <button onclick="searchCity()">
+                        🌐 Search City
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="weather-card" id="result">
+                Waiting for prediction...
+            </div>
+            </box>
+
+        </div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
