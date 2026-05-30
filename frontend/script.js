@@ -22,7 +22,7 @@ function searchCity(){
 
     const city = document.getElementById("cityInput").value;
 
-    fetch(`http://127.0.0.1:8000/city/${city}`)
+    fetch(`https://weather-prediction-using-lstm-method-1.onrender.com/city/${city}`)
 
     .then(response => response.json())
 
@@ -49,7 +49,7 @@ function success(position){
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    fetch("http://127.0.0.1:8000/predict",{
+    fetch("https://weather-prediction-using-lstm-method-1.onrender.com/predict",{
 
         method:"POST",
 
@@ -187,3 +187,8 @@ function animate(){
 }
 
 animate();
+
+
+// git add frontend/script.js
+// git commit -m "fix: update API URL"
+// git push origin master
