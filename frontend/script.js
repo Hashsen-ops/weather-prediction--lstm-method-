@@ -13,13 +13,20 @@ function getLocation() {
 function searchCity() {
     const city = document.getElementById("cityInput").value;
     if (!city) return;
+
+    document.getElementById("descText").textContent = "Loading... please wait ⏳";
+
     fetch(`${API_URL}/city/${city}`)
         .then(r => r.json())
         .then(data => updateUI(data))
-        .catch(() => alert("Error fetching weather!"));
+        .catch(() => {
+            document.getElementById("descText").textContent = "Server waking up... try again in 10 seconds ⏳";
+        });
 }
 
 function success(position) {
+    document.getElementById("descText").textContent = "Loading... please wait ⏳";
+
     fetch(`${API_URL}/predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -30,7 +37,9 @@ function success(position) {
     })
         .then(r => r.json())
         .then(data => updateUI(data))
-        .catch(() => alert("Error fetching weather!"));
+        .catch(() => {
+            document.getElementById("descText").textContent = "Server waking up... try again in 10 seconds ⏳";
+        });
 }
 
 function error() {
@@ -127,11 +136,23 @@ function updateUI(data) {
     setTheme(data.is_day);
 }
 
-function setTheme(isDay) {
-    if (isDay) {
-        document.body.style.background = "url('https://images.unsplash.com/photo-1601297183305-073045b8d9f5?w=1600&q=80') center/cover no-repeat";
+function setTheme(isDay, condition) {
+    let bg = "";
+
+    if (!isDay) {
+        bg = "linear-gradient(135deg, #0f0c29, #302b63, #24243e)";
+    } else if (condition.toLowerCase().includes("rain")) {
+        bg = "linear-gradient(180deg, #4a6fa5 0%, #6b8cba 50%, #9db4d4 100%)";
+    } else if (condition.toLowerCase().includes("cloud")) {
+        bg = "linear-gradient(180deg, #8fa8c8 0%, #b4c8e0 50%, #d4e4f4 100%)";
+    } else if (condition.toLowerCase().includes("clear")) {
+        bg = "linear-gradient(180deg, #1a90d9 0%, #56aee2 40%, #87CEEB 100%)";
+    } else if (condition.toLowerCase().includes("haze") || condition.toLowerCase().includes("mist")) {
+        bg = "linear-gradient(180deg, #b8c6db 0%, #d4dde8 100%)";
     } else {
-        document.body.style.background = "linear-gradient(135deg, #0f0c29, #302b63, #24243e)";
+        bg = "linear-gradient(180deg, #1a90d9 0%, #56aee2 40%, #87CEEB 100%)";
     }
-    
+
+    document.body.style.background = bg;
+    document.body.style.transition = "background 1.5s ease";
 }
