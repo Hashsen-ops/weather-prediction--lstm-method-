@@ -1,54 +1,80 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Weather Prediction AI</title>
-
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-
     <canvas id="weatherCanvas"></canvas>
-
     <div class="overlay"></div>
 
     <div class="container">
-
         <h1>Weather Prediction Using LSTM</h1>
-        <div class="section1">
-            <div class="buttons">
 
-                <button class="button1" onclick="getLocation()">
-                    🌍 Use my location (GPS)
-                </button>
-
-                <div class="vertcal1">
-                    <div class="vertical"></div>
-                    <h3>or</h3>
-                    <div class="vertical"></div>
-                </div>
-
-                <div class="manual-location">
-
-                    <input type="text" id="cityInput" placeholder="Enter City Name">
-
-                    <button onclick="searchCity()">
-                        🌐 Search City
-                    </button>
-
-                </div>
-
+        <div class="search-section">
+            <button class="gps-btn" onclick="getLocation()">🌍 Use my location (GPS)</button>
+            <div class="divider"><hr><span>or</span><hr></div>
+            <div class="search-bar">
+                <input type="text" id="cityInput" placeholder="Enter City Name">
+                <button onclick="searchCity()">🌐 Search City</button>
             </div>
-
-            <div class="weather-card" id="result">
-                Waiting for prediction...
-            </div>
-            </box>
-
         </div>
 
-        <script src="script.js"></script>
-</body>
+        <div class="weather-card" id="result">
 
+            <div class="top-row">
+                <div class="city-info">
+                    <h2 id="cityName">--</h2>
+                    <p id="dateStr"></p>
+                    <div class="temp-big"><span id="tempVal">--</span>° <small>C</small></div>
+                    <p id="descText">Waiting for prediction...</p>
+                </div>
+                <div class="icon-circle">
+                    <img id="weatherIcon" src="" alt="weather icon">
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">📊</span>
+                    <div><p>Pressure</p><span id="pressVal">--</span></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">💧</span>
+                    <div><p>Humidity</p><span id="humVal">--</span></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">💨</span>
+                    <div><p>Wind Speed</p><span id="windVal">--</span></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🧭</span>
+                    <div><p>Direction</p><span id="dirVal">--</span></div>
+                </div>
+            </div>
+
+            <!-- 5 Day Forecast -->
+            <div class="section-title">5-Day Forecast</div>
+            <div class="daily-grid" id="dailyGrid"></div>
+
+            <!-- Hourly Temperature Chart -->
+            <div class="section-title">Temperature (Next 24 Hours)</div>
+            <div class="chart-box">
+                <canvas id="hourlyChart"></canvas>
+            </div>
+
+            <div class="bottom-info">
+                Visibility: <b id="visVal">--</b> &nbsp;|&nbsp;
+                Lat: <b id="latVal">--</b> &nbsp;|&nbsp;
+                Lon: <b id="lonVal">--</b>
+            </div>
+
+            <p class="tagline">Make sure to check the weather before you make plans!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
+

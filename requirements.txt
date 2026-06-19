@@ -3,7 +3,3 @@ uvicorn
 requests
 pydantic
 python-multipart
-
-# git add requirements.txt
-# git commit -m "fix: remove heavy packages"
-# git push origin master
