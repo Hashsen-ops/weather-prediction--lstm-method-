@@ -6,7 +6,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <canvas id="weatherCanvas"></canvas>
     <div class="overlay"></div>
 
     <div class="container">
@@ -22,7 +21,6 @@
         </div>
 
         <div class="weather-card" id="result">
-
             <div class="top-row">
                 <div class="city-info">
                     <h2 id="cityName">--</h2>
@@ -54,11 +52,9 @@
                 </div>
             </div>
 
-            <!-- 5 Day Forecast -->
             <div class="section-title">5-Day Forecast</div>
             <div class="daily-grid" id="dailyGrid"></div>
 
-            <!-- Hourly Temperature Chart -->
             <div class="section-title">Temperature (Next 24 Hours)</div>
             <div class="chart-box">
                 <canvas id="hourlyChart"></canvas>
@@ -77,4 +73,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
